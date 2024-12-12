@@ -1,3 +1,4 @@
-from object_detection.logger.logger import logging
+from object_detection.pipeline.training_pipeline import TrainPipeline
 
-logging.info("Welcome to the Project")  
+obj = TrainPipeline()
+obj.run_pipeline()
