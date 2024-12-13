@@ -22,10 +22,10 @@ class ModelTrainer:
 
         try:
             logging.info("Unzipping data")
-            os.system("unzip object_dataset.zip")
-            os.system("rm object_dataset.zip")
+            os.system("unzip Sign_language_data.zip")
+            os.system("rm Sign_language_data.zip")
 
-            with open("../object_dataset/data.yaml", 'r') as stream:
+            with open("data.yaml", 'r') as stream:
                 num_classes = str(yaml.safe_load(stream)['nc'])
 
             model_config_file_name = self.model_trainer_config.weight_name.split(".")[0]
