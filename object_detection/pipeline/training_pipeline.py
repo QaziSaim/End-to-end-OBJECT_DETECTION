@@ -117,7 +117,7 @@ class TrainPipeline:
             data_validation_artifact = self.start_data_validation(
                 data_ingestion_artifact=data_ingestion_artifact
             )
-            # model_trainer_artifact = self.start_model_trainer()
+            model_trainer_artifact = self.start_model_trainer()
 
 
 
