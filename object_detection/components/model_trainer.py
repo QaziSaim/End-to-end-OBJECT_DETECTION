@@ -22,8 +22,8 @@ class ModelTrainer:
 
         try:
             logging.info("Unzipping data")
-            os.system("unzip Sign_language_data.zip")
-            os.system("rm Sign_language_data.zip")
+            os.system("unzip object_dataset.zip")
+            os.system("rm object_dataset.zip")
 
             with open("data.yaml", 'r') as stream:
                 num_classes = str(yaml.safe_load(stream)['nc'])
