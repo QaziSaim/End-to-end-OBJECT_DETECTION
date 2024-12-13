@@ -5,9 +5,8 @@ from object_detection.logger.logger import logging
 from object_detection.exception.exception import CustomException
 from object_detection.entity.config_entity import ModelTrainerConfig
 from object_detection.entity.artifacts_entity import ModelTrainerArtifact
-
-
-
+import zipfile
+import shutil
 class ModelTrainer:
     def __init__(
         self,
@@ -22,9 +21,12 @@ class ModelTrainer:
 
         try:
             logging.info("Unzipping data")
-            os.system("unzip object_dataset.zip")
-            os.system("rm object_dataset.zip")
 
+            with zipfile.ZipFile("object_dataset.zip","r") as zip_ref:
+                zip_ref.extractall(".")
+            os.remove("object_dataset.zip")
+            if not os.path.exists("data.yaml"):
+                raise FileNotFoundError("data.yaml file not found after extraction.")
             with open("data.yaml", 'r') as stream:
                 num_classes = str(yaml.safe_load(stream)['nc'])
 
@@ -39,15 +41,16 @@ class ModelTrainer:
             with open(f'yolov5/models/custom_{model_config_file_name}.yaml', 'w') as f:
                 yaml.dump(config, f)
 
-            os.system(f"cd yolov5/ && python train.py --img 416 --batch {self.model_trainer_config.batch_size} --epochs {self.model_trainer_config.no_epochs} --data ../data.yaml --cfg ./models/custom_yolov5s.yaml --weights {self.model_trainer_config.weight_name} --name yolov5s_results  --cache")
-            os.system("cp yolov5/runs/train/yolov5s_results/weights/best.pt yolov5/")
+            os.system(f"cd yolov5/ && python train.py --img 416 --batch {self.model_trainer_config.batch_size} "
+              f"--epochs {self.model_trainer_config.no_epochs} --data ../data.yaml --cfg "
+              f"./models/custom_yolov5s.yaml --weights {self.model_trainer_config.weight_name} "
+              f"--name yolov5s_results --cache")
             os.makedirs(self.model_trainer_config.model_trainer_dir, exist_ok=True)
-            os.system(f"cp yolov5/runs/train/yolov5s_results/weights/best.pt {self.model_trainer_config.model_trainer_dir}/")
-           
-            os.system("rm -rf yolov5/runs")
-            os.system("rm -rf train")
-            os.system("rm -rf test")
-            os.system("rm -rf data.yaml")
+            shutil.copy("yolov5/runs/train/yolov5s_results/weights/best.pt", self.model_trainer_config.model_trainer_dir)
+
+            # Clean up
+            shutil.rmtree("yolov5/runs", ignore_errors=True)
+            os.remove("data.yaml")
 
             model_trainer_artifact = ModelTrainerArtifact(
                 trained_model_file_path="yolov5/best.pt",
@@ -57,7 +60,6 @@ class ModelTrainer:
             logging.info(f"Model trainer artifact: {model_trainer_artifact}")
 
             return model_trainer_artifact
-
 
         except Exception as e:
             raise CustomException(e, sys)

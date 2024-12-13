@@ -6,7 +6,7 @@ from object_detection.entity.config_entity import DataValidationConfig
 from object_detection.entity.artifacts_entity import (DataIngestionArtifact,
                                                   DataValidationArtifact)
 
-
+import zipfile
 
 class DataValidation:
     def __init__(
@@ -30,19 +30,38 @@ class DataValidation:
             all_files = os.listdir(self.data_ingestion_artifact.feature_store_path)
 
             for file in all_files:
-                if file not in self.data_validation_config.required_file_list:
-                    validation_status = False
-                    os.makedirs(self.data_validation_config.data_validation_dir, exist_ok=True)
-                    with open(self.data_validation_config.valid_status_file_dir, 'w') as f:
-                        f.write(f"Validation status: {validation_status}")
-
-                else:
-                    validation_status = True
-                    os.makedirs(self.data_validation_config.data_validation_dir, exist_ok=True)
-                    with open(self.data_validation_config.valid_status_file_dir, 'w') as f:
-                        f.write(f"Validation status: {validation_status}")
-            
+                for sub_file in os.listdir(file):
+                    logging.info(f"the subfiles are {sub_file}")
+                    if sub_file not in self.data_validation_config.required_file_list:
+                        validation_status = False
+                        os.makedirs(self.data_validation_config.data_validation_dir, exist_ok=True)
+                        with open(self.data_validation_config.valid_status_file_dir, 'w') as f:
+                            f.write(f"Validation status: {validation_status}")
+                    else:
+                        validation_status = True
+                        os.makedirs(self.data_validation_config.data_validation_dir, exist_ok=True)
+                        with open(self.data_validation_config.valid_status_file_dir, 'w') as f:
+                            f.write(f"Validation status: {validation_status}")
             return validation_status
+
+
+                # if os.path.isdir(file):
+                #     logging.info(f"{file} is a folder.")
+                #     for item in os.listdir(file):
+                #         item_path=os.path.join(file,item)
+                #         if os.path.isfile(item_path):
+                #             logging.info(f"File {item}")
+                #         elif os.path.isdir(item_path):
+                #             logging.info(f"Folder {item}")
+                # # Check if it's a ZIP file
+                # elif os.path.isfile(file) and zipfile.is_zipfile(file):
+                #     logging.info(f"{file} is a ZIP file.")
+                # else:
+                #     logging.info(f"{file} is neither a folder nor a valid ZIP file.")
+                
+
+                
+            
 
         except Exception as e:
             raise CustomException(e, sys)
