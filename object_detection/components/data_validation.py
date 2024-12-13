@@ -26,14 +26,16 @@ class DataValidation:
     def validate_all_files_exist(self) -> bool:
         try:
             
-            validation_status = None
+            validation_status = "i am going to write file path"
             all_files = os.listdir(self.data_ingestion_artifact.feature_store_path)
 
             for sub_file in all_files:
+                logging.info(f"types of file {sub_file}")
                 if os.path.isdir(sub_file):
-                    logging.info(f"{sub_file} is a folder.")
+                    logging.info(f"type of file {file}")
+                    # logging.info(f"{sub_file} is a folder.")
                     for file in os.listdir(sub_file):
-                        logging.info(f"files are {file}")
+                        # logging.info(f"files are {file}")
                         if file not in self.data_validation_config.required_file_list:
                             validation_status = False
                             os.makedirs(self.data_validation_config.data_validation_dir, exist_ok=True)
