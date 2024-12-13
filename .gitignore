@@ -162,3 +162,4 @@ cython_debug/
 #.idea/
 collected_image/*
 artifacts/*
+yolov5/*

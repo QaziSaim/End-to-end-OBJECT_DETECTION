@@ -3,20 +3,20 @@ from object_detection.logger.logger import logging
 from object_detection.exception.exception import CustomException
 from object_detection.components.data_ingestion import DataIngestion
 from object_detection.components.data_validation import DataValidation
-# from object_detection.components.model_trainer import ModelTrainer
+from object_detection.components.model_trainer import ModelTrainer
 # from object_detection.components.model_pusher import ModelPusher
 # from object_detection.configuration.s3_operations import S3Operation
 
 
 from object_detection.entity.config_entity import (DataIngestionConfig
-                                               ,DataValidationConfig,)
-#                                                ModelTrainerConfig,
+                                               ,DataValidationConfig,
+                                               ModelTrainerConfig)
 #                                                ModelPusherConfig)
 
 
 from object_detection.entity.artifacts_entity import (DataIngestionArtifact
-                                                  ,DataValidationArtifact,)
-#                                                   ModelTrainerArtifact,
+                                                  ,DataValidationArtifact,
+                                                  ModelTrainerArtifact,)
 #                                                   ModelPusherArtifacts)
 
 
@@ -24,7 +24,7 @@ class TrainPipeline:
     def __init__(self):
         self.data_ingestion_config = DataIngestionConfig()
         self.data_validation_config = DataValidationConfig()
-        # self.model_trainer_config = ModelTrainerConfig()
+        self.model_trainer_config = ModelTrainerConfig()
         # self.model_pusher_config = ModelPusherConfig()
         # self.s3_operations = S3Operation()
 
@@ -80,17 +80,17 @@ class TrainPipeline:
         
 
     
-    # def start_model_trainer(self
-    # ) -> ModelTrainerArtifact:
-    #     try:
-    #         model_trainer = ModelTrainer(
-    #             model_trainer_config=self.model_trainer_config,
-    #         )
-    #         model_trainer_artifact = model_trainer.initiate_model_trainer()
-    #         return model_trainer_artifact
+    def start_model_trainer(self
+    ) -> ModelTrainerArtifact:
+        try:
+            model_trainer = ModelTrainer(
+                model_trainer_config=self.model_trainer_config,
+            )
+            model_trainer_artifact = model_trainer.initiate_model_trainer()
+            return model_trainer_artifact
 
-    #     except Exception as e:
-    #         raise CustomException(e, sys)
+        except Exception as e:
+            raise CustomException(e, sys)
         
 
     
@@ -117,6 +117,9 @@ class TrainPipeline:
             data_validation_artifact = self.start_data_validation(
                 data_ingestion_artifact=data_ingestion_artifact
             )
+            model_trainer_artifact = self.start_model_trainer()
+
+
 
             # if data_validation_artifact.validation_status == True:
             #     model_trainer_artifact = self.start_model_trainer()
@@ -128,9 +131,3 @@ class TrainPipeline:
 
         except Exception as e:
             raise CustomException(e, sys)
-
-    # def run_pipeline(self) -> None:
-    #     try:
-    #         data_ingestion_artifact = self.start_data_ingestion()
-    #     except Exception as e:
-    #         raise CustomException(e,sys)
