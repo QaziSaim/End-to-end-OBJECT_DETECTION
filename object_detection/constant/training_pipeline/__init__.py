@@ -9,9 +9,6 @@ DATA_INGESTION_DIR_NAME: str = "data_ingestion"
 
 DATA_INGESTION_FEATURE_STORE_DIR: str = "feature_store"
 
-# DATA_DOWNLOAD_URL: str = "https://github.com/QaziSaim/End-to-end-OBJECT_DETECTION/raw/main/data/object_dataset.zip"
-# DATA_DOWNLOAD_URL: str = "https://github.com/entbappy/Branching-tutorial/raw/master/Sign_language_data.zip"
-# DATA_DOWNLOAD_URL: str = "https://github.com/QaziSaim/End-to-end-OBJECT_DETECTION/raw/refs/heads/main/object_detection/data/object_dataset.zip"
 DATA_DOWNLOAD_URL: str = "https://github.com/QaziSaim/End-to-end-OBJECT_DETECTION/raw/refs/heads/main/object_detection/data/object_dataset.zip"
 
 
