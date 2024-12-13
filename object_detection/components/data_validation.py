@@ -29,22 +29,22 @@ class DataValidation:
             validation_status = None
             all_files = os.listdir(self.data_ingestion_artifact.feature_store_path)
 
-            for file in all_files:
-                for sub_file in os.listdir(file):
-                    logging.info(f"the subfiles are {sub_file}")
-                    if sub_file not in self.data_validation_config.required_file_list:
-                        validation_status = False
-                        os.makedirs(self.data_validation_config.data_validation_dir, exist_ok=True)
-                        with open(self.data_validation_config.valid_status_file_dir, 'w') as f:
-                            f.write(f"Validation status: {validation_status}")
-                    else:
-                        validation_status = True
-                        os.makedirs(self.data_validation_config.data_validation_dir, exist_ok=True)
-                        with open(self.data_validation_config.valid_status_file_dir, 'w') as f:
-                            f.write(f"Validation status: {validation_status}")
+            for sub_file in all_files:
+                if os.path.isdir(sub_file):
+                    logging.info(f"{sub_file} is a folder.")
+                    for file in os.listdir(sub_file):
+                        logging.info(f"files are {file}")
+                        if file not in self.data_validation_config.required_file_list:
+                            validation_status = False
+                            os.makedirs(self.data_validation_config.data_validation_dir, exist_ok=True)
+                            with open(self.data_validation_config.valid_status_file_dir, 'w') as f:
+                                f.write(f"Validation status: {validation_status}")
+                        else:
+                            validation_status = True
+                            os.makedirs(self.data_validation_config.data_validation_dir, exist_ok=True)
+                            with open(self.data_validation_config.valid_status_file_dir, 'w') as f:
+                                f.write(f"Validation status: {validation_status}")
             return validation_status
-
-
                 # if os.path.isdir(file):
                 #     logging.info(f"{file} is a folder.")
                 #     for item in os.listdir(file):
