@@ -164,3 +164,8 @@ collected_image/*
 artifacts/*
 yolov5/*
 logs/*
+README.dataset.txt
+README.roboflow.txt
+test/
+train/
+valid/
