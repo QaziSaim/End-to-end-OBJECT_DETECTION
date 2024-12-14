@@ -1,7 +1,5 @@
 # Object Detection using YOLOv5
 
-This README provides instructions and guidelines for setting up, running, and understanding the YOLOv5-based object detection project.
-
 ## Table of Contents
 
 1. [Introduction](#introduction)
