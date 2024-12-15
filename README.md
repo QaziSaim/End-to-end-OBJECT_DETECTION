@@ -13,11 +13,13 @@
 9. [Customization](#customization)
 10. [Troubleshooting](#troubleshooting)
 11. [References](#references)
+12. [Checkout My Colab Link](#checkout-my-colab-link)
 
 ---
 
 ## Problem Statement
 The UI end takes the image input from the user. The AI backend utilizes a lightweight open-source model to perform object detection and returns the results in a structured JSON format. The two components communicate seamlessly to provide a comprehensive solution to the user.
+
 ## Introduction
 
 This project implements object detection using YOLOv5, a state-of-the-art real-time object detection model. YOLOv5 is lightweight, fast, and highly accurate, making it suitable for a variety of tasks including autonomous driving, security surveillance, and retail analytics.
@@ -117,6 +119,10 @@ After running inference, the results will be saved in the `runs/detect/` folder.
 
 ![Prediction Example](Readme_Images/prediction_losss.png)
 ![Prediction Example](Readme_Images/Predicting_Image.jpeg)
+![Prediction Example](Readme_Images/fulljsonformat.png)
+![Prediction Example](Readme_Images/Predicting_Image.jpeg)
+![Prediction Example](Readme_Images/json%20format%20which%20iget.png)
+![Prediction Example](Readme_Images/prediction_with_json_format.png)
 
 ## Evaluation
 
@@ -132,10 +138,6 @@ python val.py --data data.yaml --weights runs/train/exp/weights/best.pt
 
 Edit the model configuration in the `models/` folder to customize the YOLOv5 architecture.
 
-### Add Custom Data Augmentation
-
-Update `augmentations.py` to implement or modify augmentation techniques.
-
 ## Troubleshooting
 
 - **Out of memory (OOM) error**: Reduce batch size using `--batch`.
@@ -148,3 +150,10 @@ Update `augmentations.py` to implement or modify augmentation techniques.
 - [PyTorch Documentation](https://pytorch.org/docs/)
 - [COCO Dataset](https://cocodataset.org/)
 
+## Checkout My Colab Link
+
+To try out the YOLOv5 object detection process in Google Colab with pre-configured setups, click the link below:
+
+[**Try YOLOv5 on Colab**](https://colab.research.google.com/drive/1M4tIX9ItEkrw4bHeuqoEGX6iGrYdMKy6#scrollTo=PF9MLHDb7tB6)
+
+This will open a Colab notebook where you can easily upload your dataset, train a custom model, and run inference with minimal setup.
