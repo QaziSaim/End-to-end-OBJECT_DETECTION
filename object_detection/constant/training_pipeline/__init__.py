@@ -1,6 +1,6 @@
 import os
+from dotenv import load_dotenv
 ARTIFACTS_DIR: str = "artifacts"
-
 
 """
 Data Ingestion related constant start with DATA_INGESTION VAR NAME
@@ -46,3 +46,8 @@ MODEL PUSHER related constant start with MODEL_PUSHER var name
 """
 BUCKET_NAME = "object-detection-sahim"
 S3_MODEL_NAME = "best.pt"
+
+AWS_DEFAULT_REGION=os.getenv('AWS_DEFAULT_REGION')
+AWS_ACCESS_KEY_ID=os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY=os.getenv('AWS_SECRET_ACCESS_KEY')
+

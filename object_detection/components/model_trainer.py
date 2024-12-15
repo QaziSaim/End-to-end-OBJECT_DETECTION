@@ -48,7 +48,9 @@ class ModelTrainer:
                             "--cfg", f"./models/custom_{model_config_file_name}.yaml",
                             "--weights", self.model_trainer_config.weight_name,
                             "--name", "yolov5s_results",
-                            "--cache"], cwd="yolov5/")
+                            "--cache",
+                            # "--device","0"
+                            ], cwd="yolov5/")
 
             # Copy trained model
             logging.info("Copying trained model")

@@ -7,3 +7,9 @@ artifacts/
 logs/
 notebooks/
 venv/
+train/
+test/
+val/
+data/
+collected_image/
+yolov5/

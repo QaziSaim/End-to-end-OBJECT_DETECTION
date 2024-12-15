@@ -35,6 +35,7 @@ class ModelPusher:
                 self.model_trainer_artifacts.trained_model_file_path,
                 self.model_pusher_config.S3_MODEL_KEY_PATH,
                 self.model_pusher_config.BUCKET_NAME,
+                
                 remove=False,
             )
             logging.info("Uploaded best model to s3 bucket")

@@ -170,3 +170,4 @@ test/
 train/
 valid/
 data/*
+.env
