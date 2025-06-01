@@ -20,10 +20,24 @@
 ## Problem Statement
 The UI end takes the image input from the user. The AI backend utilizes a lightweight open-source model to perform object detection and returns the results in a structured JSON format. The two components communicate seamlessly to provide a comprehensive solution to the user.
 
+## Goal
+The goal of this project was to help bridge communication barriers for individuals who are deaf or hard of hearing by enabling real-time interpretation of hand signs.
+
 ## Introduction
 
 This project implements object detection using YOLOv5, a state-of-the-art real-time object detection model. YOLOv5 is lightweight, fast, and highly accurate, making it suitable for a variety of tasks including autonomous driving, security surveillance, and retail analytics.
+## Key Responsibilities & Contributions:
+* Collected and pre-processed a dataset of static and dynamic hand gestures representing alphabets and common signs.
 
+* Annotated images using Roboflow to generate YOLO-compatible bounding box labels.
+
+* Trained a YOLOv5 object detection model using PyTorch, applying data augmentation techniques to improve generalization.
+
+* Integrated OpenCV for real-time webcam input to perform live inference.
+
+* Evaluated model performance using mAP, precision, and recall, and validated the model on unseen gestures.
+
+* Visualized predictions by drawing bounding boxes and class labels on live video frames.
 ## Features
 
 - Real-time object detection
