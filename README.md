@@ -133,10 +133,7 @@ After running inference, the results will be saved in the `runs/detect/` folder.
 
 ![Prediction Example](Readme_Images/prediction_losss.png)
 ![Prediction Example](Readme_Images/Predicting_Image.jpeg)
-![Prediction Example](Readme_Images/fulljsonformat.png)
-![Prediction Example](Readme_Images/Predicting_Image.jpeg)
-![Prediction Example](Readme_Images/json%20format%20which%20iget.png)
-![Prediction Example](Readme_Images/prediction_with_json_format.png)
+
 
 ## Evaluation
 
