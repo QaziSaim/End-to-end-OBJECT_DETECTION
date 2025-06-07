@@ -132,7 +132,6 @@ python detect.py --source data/images --weights runs/train/exp/weights/best.pt -
 After running inference, the results will be saved in the `runs/detect/` folder. You can view the predicted bounding boxes and class labels on the output images. Below is an example of a prediction image:
 
 ![Prediction Example](Readme_Images/prediction_losss.png)
-![Prediction Example](Readme_Images/Predicting_Image.jpeg)
 
 
 ## Evaluation
