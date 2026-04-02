@@ -1,7 +1,7 @@
 # 🧾 Automated Invoice Processing System
 
 <p align="center">
-  <img src="https://via.placeholder.com/1200x300.png?text=Invoice+Processing+System+Banner" alt="banner"/>
+  <img src="https://github.com/QaziSaim/End-to-end-OBJECT_DETECTION/blob/main/Aipt.png" alt="banner"/>
 </p>
 
 ---
