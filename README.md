@@ -1,169 +1,153 @@
-# Object Detection using YOLOv5
+# 🧾 Automated Invoice Processing System
 
-## Table of Contents
-
-1. [Introduction](#introduction)
-2. [Features](#features)
-3. [Requirements](#requirements)
-4. [Installation](#installation)
-5. [Dataset Preparation](#dataset-preparation)
-6. [Training](#training)
-7. [Inference](#inference)
-8. [Evaluation](#evaluation)
-9. [Customization](#customization)
-10. [Troubleshooting](#troubleshooting)
-11. [References](#references)
-12. [Checkout My Colab Link](#checkout-my-colab-link)
+<p align="center">
+  <img src="https://via.placeholder.com/1200x300.png?text=Invoice+Processing+System+Banner" alt="banner"/>
+</p>
 
 ---
 
-## Problem Statement
-The UI end takes the image input from the user. The AI backend utilizes a lightweight open-source model to perform object detection and returns the results in a structured JSON format. The two components communicate seamlessly to provide a comprehensive solution to the user.
+## 📌 Problem Statement
 
-## Goal
-The goal of this project was to help bridge communication barriers for individuals who are deaf or hard of hearing by enabling real-time interpretation of hand signs.
+Manual invoice processing is time-consuming, error-prone, and inefficient for businesses handling large volumes of bills. Extracting key information such as **date, total amount, and item details** requires significant manual effort and lacks scalability.
 
-## Introduction
+---
 
-This project implements object detection using YOLOv5, a state-of-the-art real-time object detection model. YOLOv5 is lightweight, fast, and highly accurate, making it suitable for a variety of tasks including autonomous driving, security surveillance, and retail analytics.
-## Key Responsibilities & Contributions:
-* Collected and pre-processed a dataset of static and dynamic hand gestures representing alphabets and common signs.
+## 🎯 Objective
 
-* Annotated images using Roboflow to generate YOLO-compatible bounding box labels.
+To build an automated system that:
 
-* Trained a YOLOv5 object detection model using PyTorch, applying data augmentation techniques to improve generalization.
+* Detects key invoice fields using **Computer Vision**
+* Extracts text using **OCR**
+* Converts unstructured bill images into structured **JSON format**
+* Provides a user-friendly interface for real-time processing
 
-* Integrated OpenCV for real-time webcam input to perform live inference.
+---
 
-* Evaluated model performance using mAP, precision, and recall, and validated the model on unseen gestures.
+## 🚀 Solution Approach
 
-* Visualized predictions by drawing bounding boxes and class labels on live video frames.
-## Features
+This project integrates **YOLOv8 (Object Detection)** with **Tesseract OCR** to create a complete pipeline for invoice data extraction. The system identifies important regions in the bill and extracts meaningful information, which is then stored in a structured format.
 
-- Real-time object detection
-- Pre-trained and custom model support
-- Easy-to-use training pipeline
-- Flexible data augmentation
-- High performance on low-resource hardware
+---
 
-## Requirements
+## 🖼️ Results & Outputs
 
-Ensure the following dependencies are installed:
+### 🔹 Input Image vs Prediction
 
-- Python >= 3.7
-- PyTorch >= 1.7
-- CUDA (for GPU support)
-- Other libraries specified in `requirements.txt`
+<p align="center">
+  <img src="https://via.placeholder.com/400x300.png?text=Original+Invoice" width="30%"/>
+  <img src="https://via.placeholder.com/400x300.png?text=YOLO+Detection+Output" width="30%"/>
+  <img src="https://via.placeholder.com/400x300.png?text=Bounding+Box+Visualization" width="30%"/>
+</p>
 
-## Installation
+### 🔹 Extracted JSON Output
 
-1. Clone the repository:
+<p align="center">
+  <img src="https://via.placeholder.com/600x300.png?text=JSON+Output" width="60%"/>
+</p>
 
-   ```bash
-   git clone https://github.com/your-repo/yolov5-object-detection.git
-   cd yolov5-object-detection
-   ```
+---
 
-2. Install dependencies:
+## ⚙️ Project Workflow
 
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. Verify installation:
-
-   ```bash
-   python detect.py --source data/images --weights yolov5s.pt
-   ```
-
-## Dataset Preparation
-
-YOLOv5 expects datasets in the following format:
-
-1. Images: Organize images under a `images/` folder.
-2. Labels: Corresponding annotations (in YOLO format) should be placed under a `labels/` folder.
-3. Dataset structure:
-   ```
-   dataset/
-   ├── train/
-   │   ├── images/
-   │   └── text/
-   ├── test/
-   │   ├── images/
-   │   └── text/
-   ├── val/
-   │   ├── images/
-   │   └── text/
-   ```
-
-Update the `data.yaml` file to specify dataset paths and class names.
-
-## Training
-
-To train a custom model, run:
-
-```bash
-python train.py --img 640 --batch 16 --epochs 50 --data data.yaml --weights yolov5s.pt
+```text
+Download Dataset (Roboflow)
+        ↓
+Train YOLOv8 Model
+        ↓
+Detect Invoice Fields (Bounding Boxes)
+        ↓
+Extract Text using OCR (Tesseract)
+        ↓
+Convert Extracted Data → JSON
+        ↓
+Build Streamlit Web App
+        ↓
+Deploy on Streamlit Cloud
+        ↓
+CI/CD using GitHub Actions
 ```
 
-### Key Arguments
+---
 
-- `--img`: Image size (default: 480).
-- `--batch`: Batch size (default: 16).
-- `--epochs`: Number of training epochs (300).
-- `--data`: Path to the dataset configuration file.
-- `--weights`: Path to pre-trained weights or specify `yolov5s.pt` for default.
+## 🔄 Process Breakdown
 
-## Inference
+### 1️⃣ Dataset Collection
 
-Run inference on images or video files:
+* Downloaded and managed dataset using **Roboflow**
+* Annotated invoice fields for object detection
 
-```bash
-python detect.py --source data/images --weights runs/train/exp/weights/best.pt --conf 0.4
-```
+### 2️⃣ Model Training
 
-### Key Arguments
+* Trained **YOLOv8 model** for detecting invoice components
+* Achieved strong detection performance using optimized parameters
 
-- `--source`: Path to the input (image/video folder or webcam).
-- `--weights`: Path to trained weights.
-- `--conf`: Confidence threshold (default: 0.4).
+### 3️⃣ Detection
 
-### Example Output
-After running inference, the results will be saved in the `runs/detect/` folder. You can view the predicted bounding boxes and class labels on the output images. Below is an example of a prediction image:
+* Generated predictions with **bounding boxes** around key fields
+* Visualized results for evaluation
 
-![Prediction Example](Readme_Images/prediction_losss.png)
+### 4️⃣ OCR Extraction
 
+* Used **Pytesseract** to extract text from detected regions
 
-## Evaluation
+### 5️⃣ Data Structuring
 
-Evaluate model performance using metrics like mAP (mean Average Precision):
+* Converted extracted information into **JSON format**
 
-```bash
-python val.py --data data.yaml --weights runs/train/exp/weights/best.pt
-```
+### 6️⃣ Deployment
 
-## Customization
+* Built UI using **Streamlit**
+* Deployed on **Streamlit Cloud**
 
-### Modify Model Architecture
+### 7️⃣ CI/CD
 
-Edit the model configuration in the `models/` folder to customize the YOLOv5 architecture.
+* Automated pipeline using **GitHub Actions**
 
-## Troubleshooting
+---
 
-- **Out of memory (OOM) error**: Reduce batch size using `--batch`.
-- **Slow training**: Verify GPU usage and install the latest CUDA drivers.
-- **Incorrect detections**: Check dataset annotations and re-train the model with proper configurations.
+## 🛠️ Tech Stack
 
-## References
+* Python
+* YOLOv8 (Ultralytics)
+* OpenCV
+* Tesseract OCR
+* Streamlit
+* GitHub Actions
 
-- [YOLOv5 Repository](https://github.com/ultralytics/yolov5)
-- [PyTorch Documentation](https://pytorch.org/docs/)
-- [COCO Dataset](https://cocodataset.org/)
+---
 
-## Checkout My Colab Link
+## 🎯 Conclusion
 
-To try out the YOLOv5 object detection process in Google Colab with pre-configured setups, click the link below:
+This project demonstrates how **Computer Vision and OCR** can be combined to automate invoice processing, significantly reducing manual effort and improving efficiency in real-world business workflows.
 
-[**Try YOLOv5 on Colab**](https://colab.research.google.com/drive/1M4tIX9ItEkrw4bHeuqoEGX6iGrYdMKy6#scrollTo=PF9MLHDb7tB6)
+---
 
-This will open a Colab notebook where you can easily upload your dataset, train a custom model, and run inference with minimal setup.
+## 🔮 Future Improvements
+
+* Improve OCR accuracy using advanced models (EasyOCR / Transformer-based models)
+* Support multiple invoice formats and layouts
+* Integrate LLMs for intelligent data parsing
+* Enable real-time invoice scanning via camera
+
+---
+
+## 👤 Author
+
+**Saim Qazi**
+
+* GitHub: *(Add your link)*
+* LinkedIn: *(Add your link)*
+
+---
+
+### 🔥 Next Step
+
+👉 Replace placeholder images with:
+
+* Your **original invoice**
+* Your **YOLO prediction output**
+* Your **bounding box image**
+* Your **JSON output screenshot**
+
+👉 Create **actual Streamlit UI code + GitHub Actions YAML**
+👉 Help you make this project **stand out for recruiters** 🚀
