@@ -1,7 +1,7 @@
-# 🧾 Automated Invoice Processing System
+# 🧾 Bone Fracture Detection
 
 <p align="center">
-  <img src="https://github.com/QaziSaim/End-to-end-OBJECT_DETECTION/blob/main/Aipt.png" alt="banner"/>
+  <img src="https://github.com/QaziSaim/End-to-end-OBJECT_DETECTION/blob/main/dafx.png" alt="banner"/>
 </p>
 
 ---
