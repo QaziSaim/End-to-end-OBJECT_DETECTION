@@ -1,0 +1,20 @@
+ultralytics==8.2.0
+opencv-python
+numpy
+pandas
+matplotlib
+scikit-learn
+PyYAML
+
+streamlit
+
+torch
+torchvision
+torchaudio
+
+tqdm
+
+pillow
+
+# Optional (if using OCR in future)
+pytesseract
