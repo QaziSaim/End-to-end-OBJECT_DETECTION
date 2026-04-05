@@ -1,153 +1,196 @@
-# 🧾 Vechicle Detection System
+# 🚗 Vehicle Detection System
 
 <p align="center">
   <img src="https://github.com/QaziSaim/End-to-end-OBJECT_DETECTION/blob/main/Tdr.png" alt="banner"/>
 </p>
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10-blue?style=for-the-badge&logo=python"/>
+  <img src="https://img.shields.io/badge/YOLOv8-Ultralytics-red?style=for-the-badge"/>
+  <img src="https://img.shields.io/badge/Streamlit-Deployed-green?style=for-the-badge&logo=streamlit"/>
+  <img src="https://img.shields.io/badge/OpenCV-Computer%20Vision-orange?style=for-the-badge&logo=opencv"/>
+</p>
+
 ---
 
-## 📌 Problem Statement
+## 📌 Overview
 
-Manual invoice processing is time-consuming, error-prone, and inefficient for businesses handling large volumes of bills. Extracting key information such as **date, total amount, and item details** requires significant manual effort and lacks scalability.
+An end-to-end **Real-Time Vehicle Detection System** built using **YOLOv8 and Streamlit**, capable of detecting multiple traffic objects from images and live webcam feed with structured JSON output.
+
+---
+
+## ❗ Problem Statement
+
+Traditional traffic monitoring systems rely heavily on manual observation, which is inefficient and not scalable. There is a need for an automated system that can:
+
+* Detect vehicles in real-time
+* Classify multiple object types
+* Provide structured data for analytics
 
 ---
 
 ## 🎯 Objective
 
-To build an automated system that:
-
-* Detects key invoice fields using **Computer Vision**
-* Extracts text using **OCR**
-* Converts unstructured bill images into structured **JSON format**
-* Provides a user-friendly interface for real-time processing
-
----
-
-## 🚀 Solution Approach
-
-This project integrates **YOLOv8 (Object Detection)** with **Tesseract OCR** to create a complete pipeline for invoice data extraction. The system identifies important regions in the bill and extracts meaningful information, which is then stored in a structured format.
+* Build a real-time detection system
+* Detect vehicles using YOLOv8
+* Generate bounding boxes with confidence scores
+* Convert detection results into JSON
+* Provide interactive UI using Streamlit
 
 ---
 
-## 🖼️ Results & Outputs
-
-### 🔹 Input Image vs Prediction
-
-<p align="center">
-  <img src="https://via.placeholder.com/400x300.png?text=Original+Invoice" width="30%"/>
-  <img src="https://via.placeholder.com/400x300.png?text=YOLO+Detection+Output" width="30%"/>
-  <img src="https://via.placeholder.com/400x300.png?text=Bounding+Box+Visualization" width="30%"/>
-</p>
-
-### 🔹 Extracted JSON Output
-
-<p align="center">
-  <img src="https://via.placeholder.com/600x300.png?text=JSON+Output" width="60%"/>
-</p>
-
----
-
-## ⚙️ Project Workflow
+## 🚀 Solution Architecture
 
 ```text
-Download Dataset (Roboflow)
+User Input (Image / Camera)
         ↓
-Train YOLOv8 Model
+YOLOv8 Model
         ↓
-Detect Invoice Fields (Bounding Boxes)
+Object Detection
         ↓
-Extract Text using OCR (Tesseract)
+Bounding Boxes + Labels
         ↓
-Convert Extracted Data → JSON
+JSON Output Generation
         ↓
-Build Streamlit Web App
-        ↓
-Deploy on Streamlit Cloud
-        ↓
-CI/CD using GitHub Actions
+Streamlit UI
 ```
 
 ---
 
-## 🔄 Process Breakdown
+## 🖼️ Demo Preview
 
-### 1️⃣ Dataset Collection
+<p align="center">
+  <img src="https://via.placeholder.com/350x250.png?text=Original+Image" width="30%"/>
+  <img src="https://via.placeholder.com/350x250.png?text=Detection+Output" width="30%"/>
+  <img src="https://via.placeholder.com/350x250.png?text=JSON+Result" width="30%"/>
+</p>
 
-* Downloaded and managed dataset using **Roboflow**
-* Annotated invoice fields for object detection
+---
 
-### 2️⃣ Model Training
+## 🎥 Live Demo
 
-* Trained **YOLOv8 model** for detecting invoice components
-* Achieved strong detection performance using optimized parameters
+👉 **Try it here:** *(Add your Streamlit link)*
 
-### 3️⃣ Detection
+👉 *(Optional)* Add GIF (high impact 🚀)
 
-* Generated predictions with **bounding boxes** around key fields
-* Visualized results for evaluation
+---
 
-### 4️⃣ OCR Extraction
+## ⚙️ Features
 
-* Used **Pytesseract** to extract text from detected regions
+* 🚗 Multi-object detection (car, truck, bus, etc.)
+* 🎯 High accuracy with YOLOv8
+* 📦 JSON output generation
+* 📷 Image + Real-time webcam support
+* 🌐 Interactive Streamlit UI
+* ⚡ Fast and lightweight
 
-### 5️⃣ Data Structuring
+---
 
-* Converted extracted information into **JSON format**
+## 📄 Sample JSON Output
 
-### 6️⃣ Deployment
-
-* Built UI using **Streamlit**
-* Deployed on **Streamlit Cloud**
-
-### 7️⃣ CI/CD
-
-* Automated pipeline using **GitHub Actions**
+```json
+[
+  {
+    "label": "car",
+    "confidence": 0.91,
+    "bbox": [120, 200, 300, 400]
+  },
+  {
+    "label": "truck",
+    "confidence": 0.82,
+    "bbox": [350, 180, 500, 420]
+  }
+]
+```
 
 ---
 
 ## 🛠️ Tech Stack
 
-* Python
-* YOLOv8 (Ultralytics)
-* OpenCV
-* Tesseract OCR
-* Streamlit
-* GitHub Actions
+| Category   | Tools Used           |
+| ---------- | -------------------- |
+| Language   | Python               |
+| Model      | YOLOv8 (Ultralytics) |
+| Vision     | OpenCV               |
+| UI         | Streamlit            |
+| Deployment | Streamlit Cloud      |
+| CI/CD      | GitHub Actions       |
 
 ---
 
-## 🎯 Conclusion
+## 📦 Installation
 
-This project demonstrates how **Computer Vision and OCR** can be combined to automate invoice processing, significantly reducing manual effort and improving efficiency in real-world business workflows.
+```bash
+git clone <your-repo-link>
+cd vehicle-detection
 
----
-
-## 🔮 Future Improvements
-
-* Improve OCR accuracy using advanced models (EasyOCR / Transformer-based models)
-* Support multiple invoice formats and layouts
-* Integrate LLMs for intelligent data parsing
-* Enable real-time invoice scanning via camera
+pip install -r requirements.txt
+```
 
 ---
 
-## 👤 Author
+## ▶️ Run Locally
+
+```bash
+streamlit run app.py
+```
+
+---
+
+## ☁️ Deployment
+
+Deployed using **Streamlit Cloud**
+👉 *(Add your deployed link here)*
+
+---
+
+## 📊 Key Highlights
+
+* Real-time object detection
+* Structured JSON output for integration
+* Scalable for smart city applications
+* Clean modular pipeline design
+
+---
+
+## 🔮 Future Enhancements
+
+* 🚀 Object tracking (DeepSORT)
+* 📊 Traffic analytics dashboard
+* 🔢 Vehicle counting system
+* 🌍 REST API (FastAPI)
+* ⚡ Edge deployment (Jetson Nano)
+
+---
+
+## 👨‍💻 Author
 
 **Saim Qazi**
 
-* GitHub: *(Add your link)*
-* LinkedIn: *(Add your link)*
+<p align="left">
+  <a href="https://github.com/your-link">
+    <img src="https://img.shields.io/badge/GitHub-Profile-black?style=for-the-badge&logo=github"/>
+  </a>
+  <a href="https://linkedin.com/in/your-link">
+    <img src="https://img.shields.io/badge/LinkedIn-Connect-blue?style=for-the-badge&logo=linkedin"/>
+  </a>
+</p>
 
 ---
 
-### 🔥 Next Step
+## ⭐ Support
 
-👉 Replace placeholder images with:
+If you like this project, give it a ⭐ on GitHub!
 
-* Your **original invoice**
-* Your **YOLO prediction output**
-* Your **bounding box image**
-* Your **JSON output screenshot**
+---
 
-👉 Create **actual Streamlit UI code + GitHub Actions YAML**
-👉 Help you make this project **stand out for recruiters** 🚀
+# 🔥 Pro Tips to Make It EVEN BETTER
+
+👉 Add:
+
+* 🎥 GIF demo (VERY HIGH IMPACT)
+* 📊 Model metrics (mAP, precision, recall)
+* 🧠 Architecture diagram
+* 📸 Real screenshots (replace placeholders)
+👉 I can create **GIF demo from your project**
+👉 Or write a **LinkedIn post that goes viral** 🚀
