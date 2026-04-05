@@ -1,8 +1,8 @@
 from ultralytics import YOLO
 import os   
 import sys
-from src.boneFractureDetection.logging.logger import logger
-from src.boneFractureDetection.exception.exception import CustomException
+from src.vehicle.logging.logger import logger
+from src.vehicle.exception.exception import CustomException
 
 class ModelTrainer:
     def __init__(self,data_yaml_path:str):

@@ -2,8 +2,8 @@ import os
 import sys
 from pathlib import Path
 
-from src.boneFractureDetection.logging.logger import logger
-from src.boneFractureDetection.exception.exception import CustomException
+from src.vehicle.logging.logger import logger
+from src.vehicle.exception.exception import CustomException
 
 class DataValidation:
     def __init__(self, data_path:str):

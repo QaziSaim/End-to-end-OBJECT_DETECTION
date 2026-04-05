@@ -1,7 +1,7 @@
-from src.boneFractureDetection.components.data_validation import DataValidation
-from src.boneFractureDetection.logging.logger import logger
-from src.boneFractureDetection.exception.exception import CustomException
-from src.boneFractureDetection.components.model_trainer import ModelTrainer
+from src.vehicle.components.data_validation import DataValidation
+from src.vehicle.logging.logger import logger
+from src.vehicle.exception.exception import CustomException
+from src.vehicle.components.model_trainer import ModelTrainer
 import sys
 class TrainPipeline:
     def __init__(self):

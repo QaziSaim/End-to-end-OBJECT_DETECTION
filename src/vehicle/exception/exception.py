@@ -1,5 +1,5 @@
 import sys
-from src.boneFractureDetection.logging.logger import logger
+from src.vehicle.logging.logger import logger
 
 
 class CustomException(Exception):
