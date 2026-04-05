@@ -32,6 +32,8 @@ MANIFEST
 *.manifest
 *.spec
 
+carenv
+vehicles-1
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
@@ -207,3 +209,4 @@ marimo/_lsp/
 __marimo__/
 
 data/
+carenv/
